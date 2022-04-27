@@ -16,6 +16,8 @@ export default function Timer() {
   const [bub, setBub] = useState(2);
   const [work, setWork] = useState(true);
   const [custom, setCustom] = useState(false);
+  const [inputWork, setInputWork] = useState(0);
+  const [inputRest, setInputRest] = useState(0);
 
   const [playFlowMode] = useSound("/audio/open-program-x.wav", {
     volume: 0.5,
@@ -94,10 +96,6 @@ export default function Timer() {
     setIsPicked(true);
     // 25 minutes work, 5 minutes rest
     if (event.target.textContent === "Classic") {
-      //   setCounter(1500);
-      //   setFlow(1500);
-      //   setRest(300);
-      // Testing numbers
       setCounter(10);
       setFlow(10);
       setRest(5);
@@ -116,11 +114,12 @@ export default function Timer() {
     }
   };
 
-  const handleCustom = (event) => {
-    setCustom(true);
+  const handleSubmit = (event) => {
+    setIsPicked(true);
+    setCounter(inputWork);
+    setFlow(inputWork);
+    setRest(inputRest);
   };
-
-  const handleSubmit = (event) => {};
 
   return (
     // background color, changes based on work or break mode
@@ -175,28 +174,26 @@ export default function Timer() {
           <div className="text-center">
             {!custom ? (
               <button
-                onClick={(event) => handleCustom(event)}
+                onClick={() => setCustom(true)}
                 className="text-black text-lg px-4 py-1 m-3 rounded-lg shadow-sm bg-white"
               >
                 Custom
               </button>
             ) : (
-              <form onSubmit={handleSubmit} className="m-10">
+              <form onSubmit={(event) => handleSubmit(event)} className="m-10">
                 <label for="work" className="text-white mr-2 font-semibold">
                   Work timer
                 </label>
                 <input
                   id="work"
                   type="text"
+                  onChange={(e) => {
+                    setInputWork(e.target.value);
+                  }}
+                  //   value={inputWork}
                   placeholder="600 (seconds)"
                   className="rounded p-1"
                 ></input>
-                <button
-                  type="submit"
-                  className="text-black text-lg px-3 py-0.5 m-3 rounded-lg shadow-sm bg-white ml-2"
-                >
-                  Save
-                </button>
                 <label
                   for="break"
                   className="text-white ml-8 mr-2 font-semibold"
@@ -206,12 +203,17 @@ export default function Timer() {
                 <input
                   id="break"
                   type="text"
+                  onChange={(e) => {
+                    setInputRest(e.target.value);
+                  }}
+                  //   value={inputRest}
                   placeholder="300 (seconds)"
                   className="rounded p-1"
                 ></input>
                 <button
                   type="submit"
-                  className="text-black text-lg px-3 py-0.5 m-3 rounded-lg shadow-sm bg-white ml-2"
+                  for="work"
+                  className="text-black text-lg px-3 py-0.5 m-3 rounded-lg shadow-sm bg-white ml-8"
                 >
                   Save
                 </button>
