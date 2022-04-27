@@ -15,6 +15,7 @@ export default function Timer() {
   const [rest, setRest] = useState(0);
   const [bub, setBub] = useState(2);
   const [work, setWork] = useState(true);
+
   const [custom, setCustom] = useState(false);
   const [inputWork, setInputWork] = useState(0);
   const [inputRest, setInputRest] = useState(0);
@@ -190,7 +191,6 @@ export default function Timer() {
                   onChange={(e) => {
                     setInputWork(e.target.value);
                   }}
-                  //   value={inputWork}
                   placeholder="600 (seconds)"
                   className="rounded p-1"
                 ></input>
@@ -206,7 +206,6 @@ export default function Timer() {
                   onChange={(e) => {
                     setInputRest(e.target.value);
                   }}
-                  //   value={inputRest}
                   placeholder="300 (seconds)"
                   className="rounded p-1"
                 ></input>
