@@ -223,9 +223,9 @@ export default function Timer() {
       ) : (
         <>
           {/* session count display */}
-          <div className="text-center">
-            <h1 className="font-semibold text-blue-800">
-              Sessions completed: {sessionCount}
+          <div className="fixed bottom-4 right-8 ">
+            <h1 className="font-semibold text-xl text-blue-800 border-2 border-blue-800 rounded-sm py-2 px-4">
+              {sessionCount}
             </h1>
           </div>
           {/* pause or cancel */}
